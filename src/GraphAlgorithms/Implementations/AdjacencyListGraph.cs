@@ -22,7 +22,7 @@ namespace GraphAlgorithms.Implementations
             }
         }
 
-        public void AddEdge(T source, T destination, bool isBidirection = true)
+        public void AddEdge(T source, T destination, bool isBidirectional = true)
         {
             if (!adjacencyList.ContainsKey(source)) AddVertex(source);
 
@@ -30,7 +30,7 @@ namespace GraphAlgorithms.Implementations
 
             adjacencyList[source].Add(destination);
 
-            if (isBidirection)
+            if (isBidirectional)
             {
                 adjacencyList[destination].Add(source);
             }
@@ -105,6 +105,37 @@ namespace GraphAlgorithms.Implementations
                     DFSRecursive(neighbor, visited);
                 }
             }
+        }
+
+        public List<T> TopologicalSort() {
+            var visited = new HashSet<T>();
+            var recursionStack = new HashSet<T>();
+            var stack = new Stack<T>();
+
+            foreach (var vertex in adjacencyList.Keys) {
+                if (!visited.Contains(vertex)) {
+                    TopologicalSortDFS(vertex, visited, recursionStack, stack);
+                }
+            }
+
+            return new List<T>(stack);
+        }
+
+        public void TopologicalSortDFS(T vertex, HashSet<T> visited, HashSet<T> recursionStack, Stack<T> stack)
+        {
+            visited.Add(vertex);
+            recursionStack.Add(vertex);
+
+            if (adjacencyList.ContainsKey(vertex)) {
+                foreach (var neighbor in adjacencyList[vertex]) {
+                    if (!visited.Contains(neighbor)) {
+                        TopologicalSortDFS(neighbor, visited, recursionStack, stack);
+                    }
+                }
+            }
+
+            recursionStack.Remove(vertex);
+            stack.Push(vertex);
         }
 
         public void PrintGraph()
