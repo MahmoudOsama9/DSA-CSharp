@@ -5,7 +5,7 @@ A collection of Data Structures and Algorithms implemented in C# for educational
 ## Structure
 - **src/GraphAlgorithms**: Implementations of Graph Theory (BFS, DFS, Adjacency Lists).
 
-## 🛠 Algorithms Implemented
+## Algorithms Implemented
 ### Graph Theory
 - [ ] Generic Adjacency List
 - [ ] Breadth-First Search (BFS)
@@ -13,7 +13,7 @@ A collection of Data Structures and Algorithms implemented in C# for educational
 - [ ] Dijkstra's Algorithm 
 - [ ] Topological Sort
 
-## 💻 How to Run
+## How to Run
 1. Clone the repo
 2. Navigate to `src/GraphAlgorithms`
 3. Run `dotnet run`
